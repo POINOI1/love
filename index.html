@@ -1,197 +1,610 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
+
 <head>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+
     <meta charset="UTF-8">
 
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap"
+        rel="stylesheet">
+
     <title>For You ❤️</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            margin: 0;
+            padding: 0;
+
+            min-height: 100vh;
+            min-height: 100dvh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-family: Arial, sans-serif;
+
+            background: linear-gradient(
+                135deg,
+                #ffe4ec,
+                #ffd1dc
+            );
+
+            color: #333;
+
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+
+        /* =========================
+           รูปภาพ
+        ========================= */
+
+        .photo-love {
+
+            position: relative;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            width: 100%;
+
+            padding: 20px;
+
+            transform: translateY(-120px);
+        }
+
+
+        .photo {
+
+            width: 35vw;
+
+            max-width: 180px;
+
+            min-width: 110px;
+
+            aspect-ratio: 3 / 4;
+
+            object-fit: cover;
+
+            border-radius: 15px;
+
+            box-shadow:
+                0 8px 20px
+                rgba(0, 0, 0, 0.2);
+
+            transition:
+                transform 0.3s ease;
+        }
+
+
+        .photo-left {
+
+            transform:
+                rotate(-8deg)
+                translateX(10px);
+        }
+
+
+        .photo-right {
+
+            transform:
+                rotate(8deg)
+                translateX(-10px);
+        }
+
+
+        /* =========================
+           หัวใจ
+        ========================= */
+
+        .heart {
+
+            position: absolute;
+
+            left: 50%;
+            top: 50%;
+
+            transform:
+                translate(-50%, -50%);
+
+            z-index: 10;
+
+            font-size:
+                clamp(35px, 10vw, 55px);
+
+            filter:
+                drop-shadow(
+                    0 4px 8px
+                    rgba(0, 0, 0, 0.2)
+                );
+
+            animation:
+                heartBeat
+                1s
+                ease-in-out
+                infinite;
+        }
+
+
+        @keyframes heartBeat {
+
+            0%,
+            100% {
+
+                transform:
+                    translate(-50%, -50%)
+                    scale(1);
+            }
+
+            50% {
+
+                transform:
+                    translate(-50%, -50%)
+                    scale(1.2);
+            }
+        }
+
+
+        /* =========================
+           ปุ่ม
+        ========================= */
+
+        button {
+
+            position: fixed;
+
+            left: 50%;
+            bottom: 25px;
+
+            transform:
+                translateX(-50%);
+
+            z-index: 20;
+
+            padding:
+                12px 24px;
+
+            border: none;
+
+            border-radius: 15px;
+
+            background: white;
+
+            color: #d63384;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 5px 15px
+                rgba(0, 0, 0, 0.15);
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+
+        button:active {
+
+            transform:
+                translateX(-50%)
+                scale(0.95);
+        }
+
+
+        /* =========================
+           กล่องข้อความ
+        ========================= */
+
+        .text-box {
+
+            opacity: 0;
+
+            visibility: hidden;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            text-align: center;
+
+            position: fixed;
+
+            z-index: 30;
+
+            left: 50%;
+            top: 50%;
+
+            transform:
+                translate(-50%, 70%);
+
+            width: 80vw;
+
+            max-width: 500px;
+
+            min-height: 350px;
+
+            max-height: 80vh;
+
+            padding:
+                25px 20px;
+
+            border-radius: 30px;
+
+            background: #d63384;
+
+            box-shadow:
+                0 15px 40px
+                rgba(0, 0, 0, 0.25);
+
+            transition:
+
+                opacity 1s ease,
+
+                transform 1s ease,
+
+                visibility 1s ease;
+
+            overflow-y: auto;
+        }
+
+
+        .text-box.show {
+
+            opacity: 1;
+
+            visibility: visible;
+
+            transform:
+                translate(-50%, -50%);
+        }
+
+
+        /* =========================
+           หัวข้อ รักนะ
+        ========================= */
+
+        .text-box h1 {
+
+            margin:
+
+                0 0 15px 0;
+
+            color: white;
+
+            font-family:
+                'Dancing Script',
+                cursive;
+
+            font-size:
+                clamp(40px, 12vw, 65px);
+        }
+
+
+        /* =========================
+           ข้อความ
+        ========================= */
+
+        .text-box h3 {
+
+            margin: 0;
+
+            padding: 0 5px;
+
+            color: white;
+
+            font-size:
+                clamp(14px, 4vw, 18px);
+
+            line-height: 1.7;
+
+            font-weight: normal;
+        }
+
+
+        /* =========================
+           มือถือ
+        ========================= */
+
+        @media (max-width: 600px) {
+
+            .photo-love {
+
+                transform:
+                    translateY(-100px);
+
+                padding: 10px;
+            }
+
+
+            .photo {
+
+                width: 38vw;
+
+                max-width: 150px;
+
+                min-width: 100px;
+            }
+
+
+            .photo-left {
+
+                transform:
+                    rotate(-8deg)
+                    translateX(8px);
+            }
+
+
+            .photo-right {
+
+                transform:
+                    rotate(8deg)
+                    translateX(-8px);
+            }
+
+
+            .heart {
+
+                font-size: 45px;
+            }
+
+
+            .text-box {
+
+                width: 88vw;
+
+                min-height: 320px;
+
+                max-height: 75vh;
+
+                padding:
+                    20px 15px;
+
+                border-radius: 25px;
+            }
+
+
+            .text-box h1 {
+
+                font-size: 48px;
+            }
+
+
+            .text-box h3 {
+
+                font-size: 15px;
+
+                line-height: 1.7;
+            }
+
+
+            button {
+
+                bottom: 20px;
+
+                padding:
+                    11px 22px;
+
+                font-size: 15px;
+            }
+        }
+
+
+        /* =========================
+           มือถือจอเล็กมาก
+        ========================= */
+
+        @media (max-width: 380px) {
+
+            .photo-love {
+
+                transform:
+                    translateY(-90px);
+            }
+
+
+            .photo {
+
+                width: 36vw;
+
+                min-width: 90px;
+            }
+
+
+            .heart {
+
+                font-size: 40px;
+            }
+
+
+            .text-box {
+
+                width: 90vw;
+
+                min-height: 300px;
+
+                padding:
+                    18px 12px;
+            }
+
+
+            .text-box h1 {
+
+                font-size: 42px;
+            }
+
+
+            .text-box h3 {
+
+                font-size: 14px;
+
+                line-height: 1.6;
+            }
+        }
+
+    </style>
+
 </head>
- <style>
-     body {
-        margin: 0;
-        padding: 0;
 
-        min-height: 100vh;
-
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        font-family: Arial, sans-serif;
-
-        background: linear-gradient(
-            135deg,
-            #ffe4ec,
-            #ffd1dc
-        );
-
-        color: #333;
-
-        overflow: hidden;
-     }
-     .photo-love {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    margin: 30px auto;
-    transform: translateY(-200px);
-}
-
-
-    .photo {
-        width: 40vw;
-        max-width: 180px;
-        aspect-ratio: 3 / 4;
-
-        object-fit: cover;
-
-        border-radius: 15px;
-
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-
-        transition: transform 0.3s ease;
-    }
-    button {
-    position: fixed;
-    border-radius: 15px;
-    transform: translateX(-50%);
-    padding: 12px 25px;
-    bottom: 30px;
-    left: 50%;
-
-
-
-    }
-
-    .text-box {
-
-    opacity: 0;
-    visibility: hidden;
-    display: flex;
-    flex-direction: column;
-    border-radius: 50px;
-    align-items: center;
-    justify-content: center;
-    background: #d63384;
-    width: 50vh;
-    height: 45vh;
-    position: fixed;
-    left: 50%;
-    bottom: 40%;
-    transform: translate(-50%, 50%);
-    transition: opacity 5s ease, visibility 1s ease;
-    }
-
-    .text-box.show {
-    opacity: 1;
-    visibility: visible;
-    }
-
-
-
-
-    .photo-left {
-        transform: rotate(-8deg) translateX(10px);
-    }
-
-
-    .photo-right {
-        transform: rotate(8deg) translateX(-10px);
-    }
-
-
-    .heart {
-        position: absolute;
-
-        left: 50%;
-        top: 50%;
-
-        transform: translate(-50%, -50%);
-
-        z-index: 10;
-
-        font-size: clamp(35px, 10vw, 55px);
-
-        filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
-
-        animation: heartBeat 1s ease-in-out infinite;
-    }
-
-
-    @keyframes heartBeat {
-
-        0%, 100% {
-            transform: translate(-50%, -50%) scale(1);
-        }
-
-        50% {
-            transform: translate(-50%, -50%) scale(1.2);
-        }
-
-    }
-
-     h3 {
-     color: white;
-     }
-
-
- </style>
 
 <body>
-    <div class="text-box" id="message">
-        <h1 style="color: white;
-                   font-family: 'Dancing Script', cursive;">รักนะ</h1>
-        <h3>
-        เรารักหอมมากนะ<br>
-        อยากให้อยู่ด้วยกันแบบนี้ไปนาน ๆ เลย<br><br>
 
-        เราอาจจะไม่ค่อยเก่งเรื่องพูด<br>
-        บางทีเราอาจไม่รู้ว่าจะพูดอะไรดี<br>
-        แต่เราอยากให้หอมรู้ไว้นะว่า<br>
-        เราดีใจมากที่มีหอมเข้ามาในชีวิต<br><br>
-        ขอบคุณที่อยู่ข้าง ๆ กันนะ<br>
-        รักหอมนะ ❤️
+
+    <!-- =========================
+         กล่องข้อความ
+    ========================= -->
+
+    <div
+        class="text-box"
+        id="message"
+    >
+
+        <h1>
+            รักนะ ❤️
+        </h1>
+
+
+        <h3>
+
+            เรารักหอมมากนะ<br>
+
+            อยากให้อยู่ด้วยกันแบบนี้
+            ไปนาน ๆ เลย
+
+            <br><br>
+
+            เราอาจจะไม่ค่อยเก่งเรื่องพูด<br>
+
+            บางทีเราอาจไม่รู้ว่า
+            จะพูดอะไรดี
+
+            <br>
+
+            แต่เราอยากให้หอมรู้ไว้นะว่า<br>
+
+            เราดีใจมากที่มีหอม
+            เข้ามาในชีวิต
+
+            <br><br>
+
+            ขอบคุณที่อยู่ข้าง ๆ กันนะ<br>
+
+            รักหอมนะ ❤️
+
         </h3>
 
     </div>
-    <button onclick="song_run()">💌 เปิดเพลง</button>
 
 
+    <!-- =========================
+         ปุ่ม
+    ========================= -->
+
+    <button
+        onclick="song_run()"
+    >
+
+        💌 เปิดเพลง
+
+    </button>
+
+
+    <!-- =========================
+         เพลง
+    ========================= -->
 
     <audio id="son">
-    <source src="son.mp3" type="audio/mpeg">
+
+        <source
+            src="son.mp3"
+            type="audio/mpeg"
+        >
+
     </audio>
+
+
+    <!-- =========================
+         รูป
+    ========================= -->
 
     <div class="photo-love">
 
-        <img src="photo1.jpg" class="photo photo-left">
+
+        <img
+            src="photo1.jpg"
+            class="photo photo-left"
+            alt="Photo 1"
+        >
+
 
         <div class="heart">
+
             ❤️
+
         </div>
 
-        <img src="photo2.jpg" class="photo photo-right">
+
+        <img
+            src="photo2.jpg"
+            class="photo photo-right"
+            alt="Photo 2"
+        >
 
     </div>
 
 
-
-
+    <!-- =========================
+         JavaScript
+    ========================= -->
 
     <script>
-        function song_run() {
-         document.getElementById("son").play();
 
-         document.getElementById("message").classList.add("show");
+        function song_run() {
+
+            const song =
+                document.getElementById("son");
+
+            const message =
+                document.getElementById("message");
+
+
+            /* เล่นเพลง */
+
+            song.play();
+
+
+            /* เปิดกล่องข้อความ */
+
+            message.classList.add("show");
+
         }
 
-
     </script>
-</body>
-</html>
 
+
+</body>
+
+</html>
