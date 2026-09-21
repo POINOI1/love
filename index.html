@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
 
     <meta name="viewport"
@@ -38,6 +39,7 @@
     justify-content: center;
     width: 100%;
     margin: 30px auto;
+    transform: translateY(-200px);
 }
 
 
@@ -64,6 +66,30 @@
 
 
 
+    }
+
+    .text-box {
+
+    opacity: 0;
+    visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    border-radius: 50px;
+    align-items: center;
+    justify-content: center;
+    background: #d63384;
+    width: 50vh;
+    height: 45vh;
+    position: fixed;
+    left: 50%;
+    bottom: 40%;
+    transform: translate(-50%, 50%);
+    transition: opacity 5s ease, visibility 1s ease;
+    }
+
+    .text-box.show {
+    opacity: 1;
+    visibility: visible;
     }
 
 
@@ -109,9 +135,30 @@
 
     }
 
+     h3 {
+     color: white;
+     }
+
+
  </style>
 
 <body>
+    <div class="text-box" id="message">
+        <h1 style="color: white;
+                   font-family: 'Dancing Script', cursive;">รักนะ</h1>
+        <h3>
+        เรารักหอมมากนะ<br>
+        อยากให้อยู่ด้วยกันแบบนี้ไปนาน ๆ เลย<br><br>
+
+        เราอาจจะไม่ค่อยเก่งเรื่องพูด<br>
+        บางทีเราอาจไม่รู้ว่าจะพูดอะไรดี<br>
+        แต่เราอยากให้หอมรู้ไว้นะว่า<br>
+        เราดีใจมากที่มีหอมเข้ามาในชีวิต<br><br>
+        ขอบคุณที่อยู่ข้าง ๆ กันนะ<br>
+        รักหอมนะ ❤️
+        </h3>
+
+    </div>
     <button onclick="song_run()">💌 เปิดเพลง</button>
 
 
@@ -119,7 +166,6 @@
     <audio id="son">
     <source src="son.mp3" type="audio/mpeg">
     </audio>
-
 
     <div class="photo-love">
 
@@ -135,9 +181,13 @@
 
 
 
+
+
     <script>
         function song_run() {
          document.getElementById("son").play();
+
+         document.getElementById("message").classList.add("show");
         }
 
 
